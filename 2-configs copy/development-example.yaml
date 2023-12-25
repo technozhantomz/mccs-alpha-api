@@ -1,0 +1,80 @@
+# To create a development.yaml file, please replace xxx with actual values.
+
+env: development
+url: http://localhost:8080
+port: 8080
+reset_password_timeout: 60 # 1 minute, should be at least 60 minutes in production
+page_size: 10
+tags_limit: 10
+email_from: MCCS localhost dev
+daily_email_schedule: "* * 1 * * *"
+balance_check_schedule: "* * 1 * * *"
+concurrency_num: 3
+
+receive_email:
+  trade_contact_emails: true
+  signup_notifications: true
+
+login_attempts:
+  limit: 3     # number of attempts before applying login_attempts_timeout
+  timeout: 60  # 1 minute, should be at least 15 minutes in production
+
+rate_limiting:
+  limit: 60 # number of requests within the duration; increase for automated testing scripts
+  duration: 1 # minute
+
+validate:
+  email:
+    maxLen: 100
+  password:
+    minLen: 8
+
+transaction:
+  max_neg_bal: 0
+  max_pos_bal: 500
+
+psql:
+  host: postgres
+  port: 5432
+  user: postgres
+  password:
+  db: mccs
+
+mongo:
+  url: mongodb://mongo:27017
+  database: mccs
+
+redis:
+  host: redis
+  port: 6379
+  password: sOmE_sEcUrE_pAsS
+
+es:
+  url: http://es01:9200
+
+jwt:
+  private_key: |
+    -----BEGIN RSA PRIVATE KEY-----
+    xxx
+    -----END RSA PRIVATE KEY-----
+  public_key: |
+    -----BEGIN PUBLIC KEY-----
+    xxx
+    -----END PUBLIC KEY-----
+
+sendgrid:
+  key: xxx
+  sender_email: xxx
+  template_id:
+    welcome_message: xxx
+    daily_match_notification: xxx
+    trade_contact: xxx
+    transfer_initiated: xxx
+    transfer_accepted: xxx
+    transfer_rejected: xxx
+    transfer_cancelled: xxx
+    transfer_cancelled_by_system: xxx
+    user_password_reset: xxx
+    admin_password_reset: xxx
+    signup_notification: xxx
+    non_zero_balance_notification: xxx
