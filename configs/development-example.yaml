@@ -1,97 +1,80 @@
+# To create a development.yaml file, please replace xxx with actual values.
+
 env: development
 url: http://localhost:8080
 port: 8080
-reset_password_timeout: 60
+reset_password_timeout: 60 # 1 minute, should be at least 60 minutes in production
 page_size: 10
 tags_limit: 10
 email_from: MCCS localhost dev
 daily_email_schedule: "* * 1 * * *"
 balance_check_schedule: "* * 1 * * *"
 concurrency_num: 3
+
 receive_email:
   trade_contact_emails: true
   signup_notifications: true
+
 login_attempts:
-  limit: 3
-  timeout: 60
+  limit: 3     # number of attempts before applying login_attempts_timeout
+  timeout: 60  # 1 minute, should be at least 15 minutes in production
+
 rate_limiting:
-  limit: 60
-  duration: 1
+  limit: 60 # number of requests within the duration; increase for automated testing scripts
+  duration: 1 # minute
+
 validate:
   email:
     maxLen: 100
   password:
     minLen: 8
+
 transaction:
   max_neg_bal: 0
   max_pos_bal: 500
+
 psql:
   host: postgres
   port: 5432
   user: postgres
-  password: null
+  password:
   db: mccs
+
 mongo:
   url: mongodb://mongo:27017
   database: mccs
+
 redis:
   host: redis
   port: 6379
   password: sOmE_sEcUrE_pAsS
+
 es:
   url: http://es01:9200
+
 jwt:
   private_key: |
     -----BEGIN RSA PRIVATE KEY-----
-        MIIEpQIBAAKCAQEAvUv1yjRq8o9ofN3UIov2MWcyOr2yRg615kXkN2CPwpZbrO9C
-        tCdqC4Yuvz6rVCFaOpsI8BcJ7lG+WVtemT4/HS4swQtBcFPrf+OVbnnsOrRs+Eya
-        0VnMuanS+0Ogd2lzKRcm8I4qrwIz/zDt1ssd7IcCcp/PNFPME8cGRc/8uBAn9Zdn
-        RsHHa6dyGbk2tSVrTSOPEZLkEGcW6om/4Ko37XR7fFWjCbQJ6BQ5QSJbKdwTL4Qk
-        vrxMsCIBI2NHvmhd3S8vOXhdoYGjoSPBVrOaUscxtaISveR1+CjFc7C4xmGe9WVr
-        wVnUsrXjZmSHCEXxPwq904MY8DDaBiLNmmFZlQIDAQABAoIBABgqEDBFzLk2EVKP
-        Rrs6Pq1DzSeue4lx60p/9YgULYXbh8xlppA0z9a0xFbpexl8QHZmwBdV+ZCQosnp
-        XgQV7ByfflsOQsZCEDf9J2A49CzyR07TCJhc7ENvKF2m3l8f+PFv4SqoG07H6zdS
-        Waont6Qv/+H+AIdfgxerOmPDDzG3tdtSnkQytfP0DQ7QSBHMY36+Ov3eakQLXAa+
-        tP4fVtP1WaJtux7qTb4Zw6i2PptBUixwwjXBk8xAxIki9mjjpPaHoxGk4cB/Chf8
-        wnS4lQXovM12o1n3rH4696lCBFq+deYrBf5xizMQGSyl44qn8SSvSjxOq37RGbDp
-        ln/igoECgYEA73CqZ5SUMZ4indpkL3L3g0bnEw4UX2PdgXvYvaUF9Q4vfgcb/Vu7
-        3tCJwN1IUfddIvms1VCQTBfQ3KGrC+Suq1kDZg5coee38RCDTD28D31uKGIiA7Ab
-        Uvt5k2DWzcso/i6TDsNhsJ7hBF9ldea4pF16sLwCbryx22STlYmyFiUCgYEAymN+
-        +T65i4/j5zFmE37/ic2DHhGG9bJNPP676Q3qPrtmmfQNG3hQhWkyaSL7iII95mz0
-        LUPT8vPa4UAwkSr/WPmoKBya/J3q6T8VB7AJyau9Mv9OVuJdCw+M7UcgP6iy0y+w
-        wmq8a6m7Z5plFOim06+MiNnJAmf8zndae4YYwrECgYEArDzIZ6AqhhKx5gkePj+e
-        KnHLcRqUrxWgVi9nduwJgAEHSsoEaVkeqKYsIW9MQaIF/k3J9NxyIDqVhNBKwVBs
-        EVgDqNs16UVNPPxa5nIWILJilmwY+bwpu6SoDMsBWaIFx+pq4JjNYga36LRSwOAJ
-        /Do+Mnnb6hqUejQ8MbqOP30CgYEAuVuCkNenq3AvNDCD4lsvwo+cBE/dIO0Z3EEY
-        7Is3/Bg6Ecn4ry3z4RvFdZD6eb1+36jtwP8cAKjhz+awFGQi1ORh48q/D5m56cFC
-        i3XooPFPKIO2xdAvks+9LBs2J9djYBOPeZ+zzY73+hzncszY7Ysb1MJRXIjMenPJ
-        RNQ9nSECgYEAj6ywONFVKFk9c+heI8IKKe6NovLygZgf8zjGTlpj5FaeUAfrPBQd
-        4a9SUj8bnKeaJoOwjsV224BMr0j2r48rOgwlyTaQYGzLwcg7254qBunGr44B38hb
-        631QKNw0Dyd2/kTr3fLd7pg7gFdr5+NisNy3xtoTY/e5sQtGe5mc3QM=
+    xxx
     -----END RSA PRIVATE KEY-----
   public_key: |
     -----BEGIN PUBLIC KEY-----
-        MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvUv1yjRq8o9ofN3UIov2
-        MWcyOr2yRg615kXkN2CPwpZbrO9CtCdqC4Yuvz6rVCFaOpsI8BcJ7lG+WVtemT4/
-        HS4swQtBcFPrf+OVbnnsOrRs+Eya0VnMuanS+0Ogd2lzKRcm8I4qrwIz/zDt1ssd
-        7IcCcp/PNFPME8cGRc/8uBAn9ZdnRsHHa6dyGbk2tSVrTSOPEZLkEGcW6om/4Ko3
-        7XR7fFWjCbQJ6BQ5QSJbKdwTL4QkvrxMsCIBI2NHvmhd3S8vOXhdoYGjoSPBVrOa
-        UscxtaISveR1+CjFc7C4xmGe9WVrwVnUsrXjZmSHCEXxPwq904MY8DDaBiLNmmFZ
-        lQIDAQAB
+    xxx
     -----END PUBLIC KEY-----
+
 sendgrid:
-  key: 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
-  sender_email: extraqa@gmail.com
+  key: xxx
+  sender_email: xxx
   template_id:
-    welcome_message: Welcome now
+    welcome_message: xxx
     daily_match_notification: xxx
-    trade_contact: dennis
-    transfer_initiated: extraqa@gmail.com
-    transfer_accepted: extraqa@gmail.com
-    transfer_rejected: extraqa@gmail.com
-    transfer_cancelled: extraqa@gmail.com
-    transfer_cancelled_by_system: extraqa@gmail.com
-    user_password_reset: extraqa@gmail.com
-    admin_password_reset: extraqa@gmail.com
-    signup_notification: extraqa@gmail.com
-    non_zero_balance_notification: 500
+    trade_contact: xxx
+    transfer_initiated: xxx
+    transfer_accepted: xxx
+    transfer_rejected: xxx
+    transfer_cancelled: xxx
+    transfer_cancelled_by_system: xxx
+    user_password_reset: xxx
+    admin_password_reset: xxx
+    signup_notification: xxx
+    non_zero_balance_notification: xxx
